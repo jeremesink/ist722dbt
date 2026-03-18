@@ -3,7 +3,6 @@ select
     AT_ACCOUNT_ID,
     AT_TITLE_ID,
 
-    -- epoch microseconds -> seconds -> timestamp
     to_timestamp_ntz(AT_QUEUE_DATE   / 1000000) as order_date,
     to_timestamp_ntz(AT_SHIPPED_DATE / 1000000) as shipped_date,
     to_timestamp_ntz(AT_RETURNED_DATE / 1000000) as returned_date
