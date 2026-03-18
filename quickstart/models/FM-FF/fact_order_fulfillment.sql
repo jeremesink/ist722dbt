@@ -5,11 +5,10 @@ with f as (
         source_item_id as item_key,
         source_order_id as order_key,
 
-        -- convert timestamps to YYYYMMDD integers
-        to_number(to_char(to_date(order_date), 'YYYYMMDD')) as order_date_key,
-        to_number(to_char(to_date(shipped_date), 'YYYYMMDD')) as shipped_date_key,
-        to_number(to_char(to_date(returned_date), 'YYYYMMDD')) as returned_date_key,
-
+        -- just pass through the raw dates for now
+        order_date,
+        shipped_date,
+        returned_date,
 
         quantity,
         unit_price,
@@ -19,6 +18,7 @@ with f as (
     from {{ ref('stg_fulfillment_events') }}
     qualify row_number() over (partition by source_system order by order_date) <= 5
 )
+
 
 select * from f
 order by source_system, fulfillment_id
