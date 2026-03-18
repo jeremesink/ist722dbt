@@ -21,13 +21,13 @@ ff as (
         at.at_id as source_order_id,
         at.at_account_id as source_customer_id,
         at.at_title_id as source_item_id,
-        at.at_queue_date as order_date,
-        at.at_shipped_date as shipped_date,
-        at.at_returned_date as returned_date,
+        at.order_date,
+        at.shipped_date,
+        at.returned_date,
         1 as quantity,
         pl.plan_price as unit_price,
         case
-            when at.at_shipped_date is not null then 'Rental'
+            when at.shipped_date is not null then 'Rental'
             when t.title_instant_available = true then 'Streaming'
             else 'Unknown'
         end as fulfillment_channel
@@ -36,6 +36,7 @@ ff as (
     join {{ ref('stg_ff_titles') }} t on t.title_id = at.at_title_id
     join {{ ref('stg_ff_plans') }} pl on pl.plan_id = a.account_plan_id
 )
+
 
 select * from fm
 union all
