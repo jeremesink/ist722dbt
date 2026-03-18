@@ -39,4 +39,4 @@ ff as (
 
 select * from fm
 union all
-select * from ff;
+select * from ff
