@@ -1,9 +1,9 @@
 with fm as (
     select
         'Fudgemart' as source_system,
-        o.order_id as source_order_id,
-        o.customer_id as source_customer_id,
-        od.product_id as source_item_id,
+        cast(o.order_id as varchar) as source_order_id,
+        cast(o.customer_id as varchar) as source_customer_id,
+        cast(od.product_id as varchar) as source_item_id,
         o.order_date,
         o.shipped_date,
         null as returned_date,
@@ -18,9 +18,9 @@ with fm as (
 ff as (
     select
         'FudgeFlix' as source_system,
-        at.at_id as source_order_id,
-        at.at_account_id as source_customer_id,
-        at.at_title_id as source_item_id,
+        cast(at.at_id as varchar) as source_order_id,
+        cast(at.at_account_id as varchar) as source_customer_id,
+        cast(at.at_title_id as varchar) as source_item_id,
         at.order_date,
         at.shipped_date,
         at.returned_date,
@@ -37,7 +37,6 @@ ff as (
     join {{ ref('stg_ff_plans') }} pl on pl.plan_id = a.account_plan_id
 )
 
-
 select * from fm
 union all
-select * from ff
+select * from ff;
