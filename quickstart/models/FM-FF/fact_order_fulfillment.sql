@@ -6,9 +6,10 @@ with f as (
         source_order_id as order_key,
 
         -- convert timestamps to YYYYMMDD integers
-        to_number(to_char(order_date, 'YYYYMMDD')) as order_date_key,
-        to_number(to_char(shipped_date, 'YYYYMMDD')) as shipped_date_key,
-        to_number(to_char(returned_date, 'YYYYMMDD')) as returned_date_key,
+        to_number(to_char(to_date(order_date), 'YYYYMMDD')) as order_date_key,
+        to_number(to_char(to_date(shipped_date), 'YYYYMMDD')) as shipped_date_key,
+        to_number(to_char(to_date(returned_date), 'YYYYMMDD')) as returned_date_key,
+
 
         quantity,
         unit_price,
