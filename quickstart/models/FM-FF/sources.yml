@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: fudgemart
+    database: RAW
+    schema: FUDGEMART_V3
+    
+    tables:
+      - name: fm_orders
+      - name: fm_order_details
+      - name: fm_products
+      - name: fm_customers
+
+  - name: fudgeflix
+    database: RAW
+    schema: FUDGEFLIX_V3
+    tables:
+      - name: ff_accounts
+      - name: ff_account_titles
+      - name: ff_titles
+      - name: ff_plans
