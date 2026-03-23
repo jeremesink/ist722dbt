@@ -1,21 +1,40 @@
 version: 2
 
 sources:
-  - name: fudgemart
+#date
+  - name: conformed
+    database: raw
+    schema: conformed
+
+    tables:
+      - name: DateDimension
+        columns:
+          - name: DateKey
+            tests:
+              - unique
+  # Fudgemart raw tables
+  - name: fudgemart_v3
     database: RAW
-    schema: FUDGEMART_V3
-    
+    schema: fudgemart_v3
     tables:
       - name: fm_orders
       - name: fm_order_details
-      - name: fm_products
       - name: fm_customers
+      - name: fm_products
+      - name: fm_shipvia_lookup
+      - name: fm_vendors
+      - name: fm_creditcards
+      - name: fm_customer_creditcards
 
-  - name: fudgeflix
+  # Fudgeflix raw tables
+  - name: fudgeflix_v3
     database: RAW
-    schema: FUDGEFLIX_V3
+    schema: fudgeflix_v3
     tables:
-      - name: ff_accounts
       - name: ff_account_titles
+      - name: ff_accounts
       - name: ff_titles
       - name: ff_plans
+      - name: ff_zipcodes
+      - name: ff_account_billing
+      - name: ff_title_genres
