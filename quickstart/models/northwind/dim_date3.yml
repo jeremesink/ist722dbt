@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: dim_date
+  - name: dim_date3
     description: "Conformed Date Dimension. One row per day of the year."
     columns:
       - name: datekey
