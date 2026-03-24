@@ -1,4 +1,4 @@
 select
     plan_id,
     plan_price
-from {{ source('fudgeflix', 'ff_plans') }}
+from {{ source('fudgeflix_v3', 'ff_plans') }}
